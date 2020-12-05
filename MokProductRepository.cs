@@ -91,5 +91,16 @@ namespace Korelskiy.GunShopASP.Services
 
             return product;
         }
+
+        public Product Delete(int id)
+        {
+            Product productToDelete = _productsList.FirstOrDefault(x => x.Id == id);
+            if (productToDelete != null)
+            {
+                _productsList.Remove(productToDelete);
+            }
+            
+            return productToDelete;
+        }
     }
 }

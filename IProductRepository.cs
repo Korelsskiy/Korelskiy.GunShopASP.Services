@@ -12,5 +12,6 @@ namespace Korelskiy.GunShopASP.Services
 
         Product Update(Product updatedProduct);
         Product Add(Product newProduct);
+        Product Delete(int id);
     }
 }
