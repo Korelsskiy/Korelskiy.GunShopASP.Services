@@ -9,6 +9,7 @@ namespace Korelskiy.GunShopASP.Services
     public class MokProductRepository : IProductRepository
     {
         private List<Product> _productsList;
+        
 
         public MokProductRepository()
         {
