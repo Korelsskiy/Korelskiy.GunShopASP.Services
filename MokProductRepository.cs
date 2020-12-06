@@ -102,5 +102,33 @@ namespace Korelskiy.GunShopASP.Services
             
             return productToDelete;
         }
+
+        public IEnumerable<CategoriesHeadCount> ProductCoundByCategory(Cat? category)
+        {
+
+            IEnumerable<Product> query = _productsList;
+
+            if (category.HasValue)
+            {
+                query = query.Where(x => x.Category == category.Value);
+            }
+
+            return query.GroupBy(x => x.Category)
+                .Select(x => new CategoriesHeadCount()
+                {
+                    Categories = x.Key.Value,
+                    Count = x.Count()
+                }).ToList(); // обязательно надо задать действие - в лист
+        }
+
+        public IEnumerable<Product> Search(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return _productsList;
+            }
+
+            return _productsList.Where(x => x.Title.ToLower().Contains(searchTerm));
+        }
     }
 }
